@@ -1,0 +1,8 @@
+FastApi
+psycopg2
+python-multipart
+uvicorn[standard]
+sqlalchemy
+alembic
+python-dotenv
+click
