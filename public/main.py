@@ -6,8 +6,6 @@ app = FastAPI(
 )
 
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
     "http://localhost:5173"
@@ -31,4 +29,8 @@ async def block_favicon(request: Request, call_next):
 
 @app.get("/")
 async def index():
-    return {"message": "Hello World"}
+    return {"message": "Hello World 111"}
+
+@app.get("/test/{id}")
+async def test(id: int):
+	return {"message": f"Hello World {id}"}
