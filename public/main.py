@@ -1,9 +1,15 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title = "HEI SERVER"
 )
+
+
+
+users = [
+    {"name": "brocc", "password": "11111111"}
+]
 
 origins = [
     "http://localhost",
