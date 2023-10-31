@@ -1,8 +1,6 @@
 from fastapi import FastAPI
-from app.routers import *
-import sys
+from app.routers import urls
 from setting import *
-
 
 app = FastAPI(
     title="HEI SERVER"

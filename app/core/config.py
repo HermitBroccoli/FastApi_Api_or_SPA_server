@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.middleware import *
 from fastapi.middleware.cors import CORSMiddleware
 import sys
+from app.middleware import *
 
 # Путь к файлу .env
 env_file = ".env"
@@ -65,9 +66,11 @@ def configure_middleware(app: FastAPI, origins):
 		allow_headers=["*"],
 	)
 
-	# Получение всех функций middleware из папки
-	middlewares = [middleware for _, middleware in locals().items() if callable(middleware) and middleware.__module__.startswith('app.middlewares.')]
+	
+
+	""" # Получение всех функций middleware из папки
+	middlewares = [middleware for _, middleware in locals().items() if callable(middleware) and middleware.__module__.startswith('app.middleware.')]
 
 	# Применение всех middleware
 	for middleware in middlewares:
-		app.middleware("http")(middleware)
+		app.middleware("http")(middleware) """

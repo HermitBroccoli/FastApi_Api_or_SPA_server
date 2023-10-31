@@ -5,3 +5,4 @@ async def block_favicon(request: Request, call_next):
 		return None  # Возвратите None, чтобы прервать выполнение запроса к favicon.ico
 	response = await call_next(request)
 	return response
+
