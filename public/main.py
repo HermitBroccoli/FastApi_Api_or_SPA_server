@@ -2,8 +2,10 @@ from fastapi import FastAPI
 from app.routers import urls
 from setting import *
 
+
+
 app = FastAPI(
-    title="HEI SERVER"
+    title=NAME_PROJECT
 )
 
 configure_middleware(app, origins)

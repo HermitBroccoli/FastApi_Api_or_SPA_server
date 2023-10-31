@@ -1,13 +1,13 @@
 from fastapi import FastAPI, Request, Query, APIRouter
+from app.models.portsmodel import Portsss
 
 router = APIRouter(
 	prefix="/posts"
 )
 
-@router.get("/{id}")
-async def get_user(id: int):
-	return {"id": id}
-
+""" @router.post("/post", response_model=Portsss)
+async def post_post(post: Portsss):
+	return {"id": post.id, "title": post.title} """
 
 
 routers = [router]

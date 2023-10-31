@@ -5,18 +5,31 @@ from fastapi.middleware.cors import CORSMiddleware
 import sys
 from app.middleware import *
 
+DEFAULT_ORIGIN = [
+	"http://localhost",
+	"http://localhost:8080",
+]
+
+PATHS = {
+	"static": os.path.join(os.path.dirname(os.path.abspath(__file__)), "static"),
+    "templates": os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates"),
+}
+
 # Путь к файлу .env
 env_file = ".env"
 
 # Если файл .env существует, читаем данные и устанавливаем их как переменные окружения
-if os.path.exists(env_file):
-	with open(env_file, "r") as file:
-		for line in file:
-			# Игнорируем пустые строки и строки без знака "="
-			if line.strip() and "=" in line:
-				# Разделяем ключ и значение по знаку "="
-				key, value = line.strip().split("=", 1)  # Используем maxsplit=1, чтобы избежать разделения значений с символами "="
-				os.environ[key] = value
+def envripoint():
+	if os.path.exists(env_file):
+		with open(env_file, "r") as file:
+			for line in file:
+				# Игнорируем пустые строки и строки без знака "="
+				if line.strip() and "=" in line:
+					# Разделяем ключ и значение по знаку "="
+					key, value = line.strip().split("=", 1)  # Используем maxsplit=1, чтобы избежать разделения значений с символами "="
+					os.environ[key] = value
+
+envripoint()
 
 # Класса для получение объекта конфигурации базы данных
 class DatabaseConfig:
@@ -43,30 +56,35 @@ class DatabaseConfig:
 			"name": cls._db_name
 		}
 
-config = DatabaseConfig.config_collection()
+CONFIG = DatabaseConfig.config_collection()
 
 
 # Теперь мы можете использовать переменные окружения в вашем скрипте
-KEY = str(os.getenv("KEY"))
+def secret_key():
+	return str(os.getenv("KEY"))
 
-origins = [
-	"http://localhost",
-	"http://localhost:8080",
-]
+def title():
+	return str(os.getenv("NAME_PROJECT"))
 
-def add_url_middleware(urls):
+origins = [*DEFAULT_ORIGIN]
+
+allow_or_rex = []
+
+def url_middleware(urls):
 	origins.extend(urls)
+
+def path_files():
+	pass
+	
 
 def configure_middleware(app: FastAPI, origins):
 	app.add_middleware(
 		CORSMiddleware,
-		allow_origins=origins,
+		allow_origins=origins, 
 		allow_credentials=True,
 		allow_methods=["*"],
 		allow_headers=["*"],
 	)
-
-	
 
 	""" # Получение всех функций middleware из папки
 	middlewares = [middleware for _, middleware in locals().items() if callable(middleware) and middleware.__module__.startswith('app.middleware.')]

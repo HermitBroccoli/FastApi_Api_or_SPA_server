@@ -6,9 +6,9 @@ router = APIRouter()
 async def index():
 	return {"message": "Hello World"}
 
-@router.get("/about")
+""" @router.get("/about")
 async def about():
-	return {"message": "About Us"}
+	return {"message": "About Us"} """
 
 
 routers = [router]
