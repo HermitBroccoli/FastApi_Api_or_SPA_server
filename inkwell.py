@@ -8,7 +8,7 @@ def secretgenerate():
 	Command to generate a secret key for a given application
 	"""
 	generate = create_or_load_secret_key()
-	click.echo("Generating secret key for application: " + generate)
+	# click.echo("Generating secret key for application: " + generate)
 
 
 @click.group()

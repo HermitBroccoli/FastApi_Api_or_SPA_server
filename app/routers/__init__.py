@@ -18,5 +18,3 @@ for file in router_files:
             urls.extend(module.routers)
     except ImportError:
         pass
-
-# Теперь в массиве `urls` будут храниться все URL-ы из переменной `routers` в соответствующих модулях в папке app/routers, исключая __init__.py

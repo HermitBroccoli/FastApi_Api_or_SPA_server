@@ -1,13 +1,19 @@
-from fastapi import FastAPI, Request, Query, APIRouter
+from fastapi import FastAPI, Request, Query, APIRouter, Form
 from app.models.portsmodel import Portsss
 
+from typing import Annotated
+
+
 router = APIRouter(
-	prefix="/posts"
+	prefix="/posts",
+	tags=["posts"],
 )
 
-""" @router.post("/post", response_model=Portsss)
-async def post_post(post: Portsss):
-	return {"id": post.id, "title": post.title} """
+
+
+@router.post("/post/{id}", response_model=Portsss)
+async def post_post(id: int, title: Annotated[str, Form()]):
+	return {"id": id, "title": title}
 
 
 routers = [router]
