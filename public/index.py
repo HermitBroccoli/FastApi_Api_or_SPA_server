@@ -7,8 +7,9 @@ app = FastAPI(
     title=NAME_PROJECT
 )
 
-configure_middleware(app, origins)
-static_apply(app, paths)
+configure_middleware(app, origins) # применение кросс-доменных запросов front-end
+
+static_apply(app, paths) # применение статических файлов
 
 for url in urls:
 	app.include_router(url)
