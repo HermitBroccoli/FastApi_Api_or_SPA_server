@@ -23,6 +23,5 @@ middleware = [
 # объявление статических файлов
 static([
     {"subpath": "/public", "dir": "public", "name": "public"},
-    {"subpath": "/assets", "dir": "public\\assets", "name": "assets"},
 ])
 # ----------------------------------------------------------------

@@ -10,17 +10,10 @@ router = APIRouter(
 	tags=["Main"]
 )
 
-@router.get("/")
-async def index(request: Request):
-    return FileResponse("public/index.html")
-
-@router.get("/{path}")
-async def index(request: Request):
-    return FileResponse("public/index.html")
-
 @router.get("/favicon.ico")
 async def favicon():
-    return FileResponse(path, media_type="image/gif")
+	return FileResponse(path, media_type="image/gif")
+	
 
 
 routers = [router]
