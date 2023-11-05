@@ -18,14 +18,6 @@ DEFAULT_ORIGIN : List[str] = [
 	"http://localhost:8080",
 ]
 #-----------------------------------------------------------------------
-
-# функция проверки ключа
-def check_secret_key(_: Optional = None):	
-	_KEY = str(os.getenv("APP_KEY", default=''))
-	init(autoreset=True)
-	if _KEY is None or _KEY == '' or _KEY.replace(" ", "") == '':
-		print(Fore.RED + "Отсутвует секретный ключ!")
-		os._exit(1)
 	
 
 # Бета
@@ -53,6 +45,20 @@ def envripoint(_: Optional = None):
 #-----------------------------------------------------------------------
 envripoint("сюда ничего не вносим")
 #-----------------------------------------------------------------------
+
+HOST = os.getenv("DB_HOST")
+PORT = os.getenv("DB_PORT")
+USER = os.getenv("DB_USERNAME")
+PASSWORD = os.getenv("DB_PASSWORD")
+DATABASE_NAME = os.getenv("DB_DATABASE")
+
+# функция проверки ключа
+def check_secret_key(_: Optional = None):	
+	_KEY = str(os.getenv("APP_KEY", default=''))
+	init(autoreset=True)
+	if _KEY is None or _KEY == '' or _KEY.replace(" ", "") == '':
+		print(Fore.RED + "Отсутвует секретный ключ!")
+		os._exit(1)
 
 # Объект кросс-доменных запросов front-end
 #-----------------------------------------------------------------------
